@@ -128,8 +128,8 @@ public class RoomListActivity extends AppCompatActivity {
                     String RTYPE =  splitcomma[1].substring(splitcomma[1].indexOf("=")+1,splitcomma[1].length());
                     String RNO =    splitcomma[2].substring(splitcomma[2].indexOf("=")+1,splitcomma[2].length());
                     String RPNO =   splitcomma[3].substring(splitcomma[3].indexOf("=")+1,splitcomma[3].length());
-                    String RNAME =  splitcomma[4].substring(splitcomma[4].indexOf("=")+1,splitcomma[4].length());
-                    String RHOST =  splitcomma[5].substring(splitcomma[5].indexOf("=")+1,splitcomma[5].length());
+                    String RHOST =  splitcomma[4].substring(splitcomma[4].indexOf("=")+1,splitcomma[4].length());
+                    String RNAME =  splitcomma[5].substring(splitcomma[5].indexOf("=")+1,splitcomma[5].length());
 
                     String toastMessage = "HOSTIP : "+HOSTIP+","+"RTYPE : "+RTYPE+","+"RNO : "+RNO+","+
                             "RPNO : "+RPNO+","+"RNAME : "+RNAME+","+"RHOST : "+RHOST;
