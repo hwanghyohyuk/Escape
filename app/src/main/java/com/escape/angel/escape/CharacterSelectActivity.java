@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class CharacterSelectActivity extends AppCompatActivity {
+    // 안녕하십니까 우하하하핳^^
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
