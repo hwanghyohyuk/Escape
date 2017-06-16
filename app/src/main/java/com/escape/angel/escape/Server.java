@@ -5,8 +5,9 @@ package com.escape.angel.escape;
  */
 
 public class Server {
-    String SERVERIP="http://192.168.25.7/";
+    String SERVERIP="http://211.207.204.12:5000/";
     public String getSERVERIP() {
         return SERVERIP;
     }
+
 }

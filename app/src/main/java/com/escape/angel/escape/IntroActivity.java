@@ -15,9 +15,9 @@ public class IntroActivity extends AppCompatActivity {
     Runnable translatePage = new Runnable() {
         @Override
         public void run() {
-            Intent intent = new Intent(IntroActivity.this, NicknameActivity.class);
-            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), NicknameActivity.class);
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);  // 페이지 페이드인 페이드아웃 전환
+            startActivity(intent);
             finish();
         }
     };
@@ -51,6 +51,11 @@ public class IntroActivity extends AppCompatActivity {
         iv_Intro.setVisibility(View.INVISIBLE);
 
         handler.postDelayed(translatePage, 4000);
+    }
+    @Override
+    protected void onDestroy(){
+        handler.removeCallbacks(translatePage);
+        super.onDestroy();
     }
 
     @Override

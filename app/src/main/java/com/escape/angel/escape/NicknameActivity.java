@@ -40,15 +40,18 @@ public class NicknameActivity extends AppCompatActivity {
 
     String setName;
 
+    private long backKeyPressedTime = 0;
+    private Toast toast;
+
     public void checkNickRun(){
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
-        prefs.edit().putString("UserName","").apply(); //닉네임 초기화
+        //prefs.edit().putString("UserName","").apply(); //닉네임 초기화
         isFirstRun = prefs.getString("UserName","");
         if(isFirstRun.equals("")) {
             Toast mToast = Toast.makeText(getApplicationContext(),"닉네임을 설정해주세요.",Toast.LENGTH_LONG);
             mToast.show();
         }else {
-            Intent mIntent = new Intent(NicknameActivity.this, MainActivity.class);
+            Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mIntent);
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             finish();
@@ -62,7 +65,7 @@ public class NicknameActivity extends AppCompatActivity {
             if(check=='0') {
                 //프리퍼런스에 저장
             prefs.edit().putString("UserName", setName).apply();
-            Intent mIntent = new Intent(NicknameActivity.this, MainActivity.class);
+            Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mIntent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
@@ -79,7 +82,6 @@ public class NicknameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nickname);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
-
         checkNickRun();
 
         button1 = (Button)findViewById(R.id.button1);
@@ -95,13 +97,36 @@ public class NicknameActivity extends AppCompatActivity {
                 }else{
                     //디비에 저장
                     insertToDatabase(setName);
-                    //디비에 저장할동안 0.1초의 딜레이를 줌
-                    handler.postDelayed(confirm, 100);
+                    //디비에 저장할동안 1초의 딜레이를 줌
+                    handler.postDelayed(confirm, 1000);
                 }
             }
         });
     }
 
+    @Override
+    protected void onDestroy(){
+        handler.removeCallbacks(confirm);
+        super.onDestroy();
+    }
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
+        }
+    }
+
+    public void showGuide() {
+        toast = Toast.makeText(getApplicationContext(),
+                "\'뒤로\' 버튼을 한번 더 누르시면 게임을 종료합니다.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
     private void insertToDatabase(String name){
 
         class InsertData extends AsyncTask<String, Void, String> {
