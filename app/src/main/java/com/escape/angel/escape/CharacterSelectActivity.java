@@ -1,5 +1,6 @@
 package com.escape.angel.escape;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -21,7 +22,9 @@ public class CharacterSelectActivity extends AppCompatActivity {
     private Bitmap bitmap1,bitmap2,bitmap3,bitmap4;
 
     private SharedPreferences prefs;
-    private Integer Character;
+    private Integer character;
+
+    private Integer selectedCharacter=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,11 @@ public class CharacterSelectActivity extends AppCompatActivity {
         iv_Character4.setImageBitmap(bitmap4);
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
-        Character = prefs.getInt("Character",0);
+        character = prefs.getInt("Character",0);
 
         //캐릭터 프리퍼런스 값을 가져와서 값에 해당하는 이미지 뷰와 체크박스의 선택표시
-        if(Character!=0){
-            switch (Character){
+        if(character!=0){
+            switch (character){
                 case 1:
                     iv_Character1.setBackgroundResource(R.drawable.image_border);
                     cb_Character1.setChecked(true);
@@ -88,6 +91,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(false);
                 cb_Character3.setChecked(false);
                 cb_Character4.setChecked(false);
+                selectedCharacter=1;
             }
         });
         iv_Character2.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +105,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(true);
                 cb_Character3.setChecked(false);
                 cb_Character4.setChecked(false);
+                selectedCharacter=2;
             }
         });
         iv_Character3.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +119,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(false);
                 cb_Character3.setChecked(true);
                 cb_Character4.setChecked(false);
+                selectedCharacter=3;
             }
         });
         iv_Character4.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +133,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(false);
                 cb_Character3.setChecked(false);
                 cb_Character4.setChecked(true);
+                selectedCharacter=4;
             }
         });
         cb_Character1.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +147,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(false);
                 cb_Character3.setChecked(false);
                 cb_Character4.setChecked(false);
+                selectedCharacter=1;
             }
         });
         cb_Character2.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +161,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(true);
                 cb_Character3.setChecked(false);
                 cb_Character4.setChecked(false);
+                selectedCharacter=2;
             }
         });
         cb_Character3.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +175,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(false);
                 cb_Character3.setChecked(true);
                 cb_Character4.setChecked(false);
+                selectedCharacter=3;
             }
         });
         cb_Character4.setOnClickListener(new View.OnClickListener() {
@@ -179,8 +189,19 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 cb_Character2.setChecked(false);
                 cb_Character3.setChecked(false);
                 cb_Character4.setChecked(true);
+                selectedCharacter=4;
             }
         });
 
+        btn_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                prefs = getSharedPreferences("Pref",MODE_PRIVATE);
+                prefs.edit().putInt("Character",selectedCharacter).apply();
+                Intent mIntent = new Intent(getApplicationContext(),MyPageActivity.class);
+                startActivity(mIntent);
+                finish();
+            }
+        });
     }
 }
