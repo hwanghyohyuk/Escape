@@ -48,6 +48,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
         iv_Character3.setImageBitmap(bitmap3);
         iv_Character4.setImageBitmap(bitmap4);
 
+        prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         Character = prefs.getInt("Character",0);
 
         //캐릭터 프리퍼런스 값을 가져와서 값에 해당하는 이미지 뷰와 체크박스의 선택표시
