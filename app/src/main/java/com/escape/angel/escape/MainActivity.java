@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences prefs;
     private String Nick,Utype;
+    private Integer Character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Nick = prefs.getString("UserName","");
         prefs.edit().putString("Utype","GUEST").apply();
         Utype = prefs.getString("Utype","");
+        Character = prefs.getInt("Character",0); //캐릭터 프리퍼런스 값 가져오기. 값이 없다면 0으로 가져옴
+        if (Character == 0){//캐릭터 프리퍼런스 값이 0일때, 즉 최초 접속일때
+            prefs.edit().putInt("Character",1).apply();//1의 값으로 저장
+        }
 
         /*버튼 링킹*/
         btn_GameStart=(Button)findViewById(R.id.btn_GameStart);

@@ -84,8 +84,8 @@ public class RoomListActivity extends AppCompatActivity {
     }
 
     protected void onStart(){
-        getData(serverIP+"getRoomlist.php");
         super.onStart();
+        getData(serverIP+"getRoomlist.php");
     }
 
 
