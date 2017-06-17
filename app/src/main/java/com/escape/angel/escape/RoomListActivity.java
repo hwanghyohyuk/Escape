@@ -63,8 +63,6 @@ public class RoomListActivity extends AppCompatActivity {
         btn_CreateRoom = (Button)findViewById(R.id.btn_CreateRoom);
         roomList = new ArrayList<HashMap<String,String>>();
 
-        getData(serverIP+"getRoomlist.php");
-
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         Utype = prefs.getString("Utype","");
         Toast.makeText(getApplicationContext(),Utype,Toast.LENGTH_SHORT).show();
@@ -87,6 +85,7 @@ public class RoomListActivity extends AppCompatActivity {
 
     protected void onStart(){
         super.onStart();
+        roomList.clear();
         getData(serverIP+"getRoomlist.php");
     }
 
