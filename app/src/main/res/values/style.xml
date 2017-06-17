@@ -1,6 +1,8 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="EscapeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowFullscreen">true</item>
+    <style name="EscapeTheme" parent="Theme.AppCompat">
+        <!-- No Title Bar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>
