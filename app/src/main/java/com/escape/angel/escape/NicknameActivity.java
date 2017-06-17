@@ -43,38 +43,21 @@ public class NicknameActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private Toast toast;
 
-    public void checkNickRun(){
-        prefs = getSharedPreferences("Pref",MODE_PRIVATE);
+    public void checkNickRun() {
+        prefs = getSharedPreferences("Pref", MODE_PRIVATE);
         //prefs.edit().putString("UserName","").apply(); //닉네임 초기화
-        isFirstRun = prefs.getString("UserName","");
-        if(isFirstRun.equals("")) {
-            Toast mToast = Toast.makeText(getApplicationContext(),"닉네임을 설정해주세요.",Toast.LENGTH_LONG);
-            mToast.show();
-        }else {
+        isFirstRun = prefs.getString("UserName", "");
+        if (isFirstRun.equals("")) {
+            Toast.makeText(getApplicationContext(), "닉네임을 설정해주세요.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "안녕하세요! " + isFirstRun + "님", Toast.LENGTH_SHORT).show();
             Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(mIntent);
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             finish();
         }
     }
-//시간차를 둬서 데이터입력 및 중복확인
-    Handler handler = new Handler();
-    Runnable confirm = new Runnable() {
-        @Override
-        public void run() {
-            if(check=='0') {
-                //프리퍼런스에 저장
-            prefs.edit().putString("UserName", setName).apply();
-            Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(mIntent);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            finish();
-            }else{
-                Toast.makeText(getApplicationContext(),"닉네임이 중복됩니다.",Toast.LENGTH_LONG).show();
-            }
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,17 +67,17 @@ public class NicknameActivity extends AppCompatActivity {
 
         checkNickRun();
 
-        button1 = (Button)findViewById(R.id.button1);
-        et_Nickname = (EditText)findViewById(R.id.et_Nickname);
+        button1 = (Button) findViewById(R.id.button1);
+        et_Nickname = (EditText) findViewById(R.id.et_Nickname);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //에디트텍스트내용을 문자열변수에 저장
                 setName = et_Nickname.getText().toString();
-                if(setName.equals("")) {//닉네임 유효성검사
-                    Toast.makeText(getApplicationContext(),"닉네임을 입력해주세요.",Toast.LENGTH_LONG).show();
-                }else{
+                if (setName.equals("")) {//닉네임 유효성검사
+                    Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else {
                     //디비에 저장
                     insertToDatabase(setName);
                     //디비에 저장할동안 1초의 딜레이를 줌
@@ -104,9 +87,35 @@ public class NicknameActivity extends AppCompatActivity {
         });
     }
 
+    //시간차를 둬서 데이터입력 및 중복확인
+    Handler handler = new Handler();
+    Runnable confirm = new Runnable() {
+        @Override
+        public void run() {
+            if (check == '0') {
+                //프리퍼런스에 저장
+                prefs.edit().putString("UserName", setName).apply();
+                Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mIntent);
+                Toast.makeText(getApplicationContext(), "닉네임이 설정되었습니다.", Toast.LENGTH_SHORT).show();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "닉네임이 중복됩니다.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+
+    @Override
+    protected void onStop(){
+        handler.removeCallbacksAndMessages(null);
+        super.onStop();
+    }
+
     @Override
     protected void onDestroy(){
-        handler.removeCallbacks(confirm);
+        handler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
     @Override

@@ -54,13 +54,13 @@ public class IntroActivity extends AppCompatActivity {
     }
     @Override
     protected void onDestroy(){
-        handler.removeCallbacks(translatePage);
+        handler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 
     @Override
     public void onBackPressed() {
-        handler.removeCallbacks(translatePage);
+        handler.removeCallbacksAndMessages(null);
         super.onBackPressed();
     }
 }

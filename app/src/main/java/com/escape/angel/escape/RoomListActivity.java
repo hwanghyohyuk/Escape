@@ -66,7 +66,7 @@ public class RoomListActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         Utype = prefs.getString("Utype","");
-        Toast.makeText(getApplicationContext(),Utype,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),Utype,Toast.LENGTH_SHORT).show();
 
         /*
         if(!RoomListActivity.this.isFinishing()) {
@@ -144,6 +144,11 @@ public class RoomListActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(
+                    getApplicationContext(),
+                    "서버와 연결되지 않았습니다.",
+                    Toast.LENGTH_SHORT
+            ).show();
         }
 
     }
