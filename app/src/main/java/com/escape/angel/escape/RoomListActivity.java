@@ -28,7 +28,7 @@ import java.util.StringTokenizer;
 
 public class RoomListActivity extends AppCompatActivity {
 
-    String myJSON; //json객체를 저장할 변수
+    private String myJSON; //json객체를 저장할 변수
 
     private static final String TAG_RESULTS="RESULT";
     private static final String TAG_RNO = "RNO";
@@ -38,16 +38,18 @@ public class RoomListActivity extends AppCompatActivity {
     private static final String TAG_RPNO ="RPNO";
     private static final String TAG_HOSTIP ="HOSTIP";
 
-    JSONArray jroom = null;
+    private JSONArray jroom = null;
 
-    ArrayList<HashMap<String, String>> roomList;
+    private ArrayList<HashMap<String, String>> roomList;
 
-    ListView list;
-    Button btn_CreateRoom;
+    private ListView list;
+    private Button btn_CreateRoom;
 
-    public SharedPreferences prefs;
-    public String Utype;
+    private Server server = new Server();
+    private String serverIP = server.getSERVERIP();
 
+    private SharedPreferences prefs;
+    private String Utype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,6 @@ public class RoomListActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.listView);
         btn_CreateRoom = (Button)findViewById(R.id.btn_CreateRoom);
         roomList = new ArrayList<HashMap<String,String>>();
-
-        Server server = new Server();
-        String serverIP = server.getSERVERIP();
 
         getData(serverIP+"getRoomlist.php");
 
@@ -83,6 +82,12 @@ public class RoomListActivity extends AppCompatActivity {
             }
         });
     }
+
+    protected void onStart(){
+        getData(serverIP+"getRoomlist.php");
+        super.onStart();
+    }
+
 
     protected void showList(){
         try {

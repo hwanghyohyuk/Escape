@@ -12,14 +12,14 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView tv_NickName;
-    Button btn_GameStart,btn_MyPage,btn_Setting,btn_Ranking;
+    private TextView tv_NickName;
+    private Button btn_GameStart,btn_MyPage,btn_Setting,btn_Ranking;
 
     private long backKeyPressedTime = 0;
     private Toast toast;
 
-    public SharedPreferences prefs;
-    public String Nick,Utype;
+    private SharedPreferences prefs;
+    private String Nick,Utype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

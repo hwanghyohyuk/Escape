@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MyPageActivity extends AppCompatActivity {
-    Button btn_Character,btn_MyItem;
+    private Button btn_Character,btn_MyItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

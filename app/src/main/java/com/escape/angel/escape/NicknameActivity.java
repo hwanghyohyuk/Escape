@@ -26,20 +26,14 @@ import java.net.URLEncoder;
 
 public class NicknameActivity extends AppCompatActivity {
     /*버튼 선언*/
-    Button button1;
-    EditText et_Nickname;
-
-    public char check;
-
-    public SharedPreferences prefs;
-
-    public String isFirstRun;
-
-    Server server = new Server();
-    String serverIP = server.getSERVERIP();
-
-    String setName;
-
+    private Button button1;
+    private EditText et_Nickname;
+    private char check;
+    private SharedPreferences prefs;
+    private String isFirstRun;
+    private Server server = new Server();
+    private String serverIP = server.getSERVERIP();
+    private String setName;
     private long backKeyPressedTime = 0;
     private Toast toast;
 

@@ -21,18 +21,18 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class RankingActivity extends AppCompatActivity {
-    String myJSON;
+    private String myJSON;
 
     private static final String TAG_RESULTS="RESULT";
     private static final String TAG_RANKNUM="RANKNUM";
     private static final String TAG_NAME = "NAME";
     private static final String TAG_TIME = "TIME";
 
-    JSONArray rank = null;
+    private JSONArray rank = null;
 
-    ArrayList<HashMap<String, String>> rankingList;
+    private ArrayList<HashMap<String, String>> rankingList;
 
-    ListView list;
+    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class LobbySingleActivity extends AppCompatActivity {
     /*버튼 선언*/
-    Button btn_Tutorial,btn_SoloPlay;
+    private Button btn_Tutorial,btn_SoloPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

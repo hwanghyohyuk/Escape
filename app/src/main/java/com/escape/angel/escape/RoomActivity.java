@@ -20,8 +20,8 @@ public class RoomActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private Toast toast;
 
-    public SharedPreferences prefs;
-    public String Nick,Utype;
+    private SharedPreferences prefs;
+    private String Nick,Utype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

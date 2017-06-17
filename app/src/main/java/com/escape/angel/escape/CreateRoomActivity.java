@@ -34,8 +34,8 @@ public class CreateRoomActivity extends AppCompatActivity {
     private RadioGroup rbg_Mode;
     private Button btn_Cancel,btn_Create;
 
-    public SharedPreferences prefs;
-    public String Nick;
+    private SharedPreferences prefs;
+    private String Nick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

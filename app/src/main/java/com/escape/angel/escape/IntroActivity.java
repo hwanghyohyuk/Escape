@@ -10,9 +10,9 @@ import android.view.animation.*;
 import android.widget.ImageView;
 
 public class IntroActivity extends AppCompatActivity {
-    ImageView iv_Intro;
-    Handler handler = new Handler();
-    Runnable translatePage = new Runnable() {
+    private ImageView iv_Intro;
+    private Handler handler = new Handler();
+    private Runnable translatePage = new Runnable() {
         @Override
         public void run() {
             Intent intent = new Intent(getApplicationContext(), NicknameActivity.class);

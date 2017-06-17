@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class LobbyActivity extends AppCompatActivity {
     /*버튼 선언*/
-    Button btn_Single,btn_Multi;
+    private Button btn_Single,btn_Multi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
