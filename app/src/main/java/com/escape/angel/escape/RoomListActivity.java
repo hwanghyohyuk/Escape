@@ -44,7 +44,7 @@ public class RoomListActivity extends AppCompatActivity {
     private ArrayList<HashMap<String, String>> roomList;
 
     private ListView list;
-    private Button btn_CreateRoom;
+    private Button btn_CreateRoom,btn_Refresh;
 
     private Server server = new Server();
     private String serverIP = server.getSERVERIP();
@@ -61,6 +61,8 @@ public class RoomListActivity extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.listView);
         btn_CreateRoom = (Button)findViewById(R.id.btn_CreateRoom);
+        btn_Refresh = (Button)findViewById(R.id.btn_Refresh);
+
         roomList = new ArrayList<HashMap<String,String>>();
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
@@ -79,6 +81,13 @@ public class RoomListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mIntent=new Intent(getApplicationContext(),CreateRoomActivity.class);
                 startActivity(mIntent);
+            }
+        });
+        btn_Refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roomList.clear();
+                getData(serverIP+"getRoomlist.php");
             }
         });
     }
