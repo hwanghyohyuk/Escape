@@ -14,7 +14,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 
 public class CharacterSelectActivity extends AppCompatActivity {
-//작성자 한귤
+//작성자 한귤 작업 두번째
     private ImageView iv_Character1,iv_Character2,iv_Character3,iv_Character4;
     private CheckBox cb_Character1,cb_Character2,cb_Character3,cb_Character4;
     private Button btn_confirm;
