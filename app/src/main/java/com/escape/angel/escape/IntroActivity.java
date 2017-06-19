@@ -1,6 +1,7 @@
 package com.escape.angel.escape;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 
 public class IntroActivity extends AppCompatActivity {
     private ImageView iv_Intro;
+    private SharedPreferences prefs;
+    private boolean Bgm, Eff;
+
     private Handler handler = new Handler();
     private Runnable translatePage = new Runnable() {
         @Override
@@ -28,6 +32,10 @@ public class IntroActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_intro);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+
+        prefs = getSharedPreferences("Pref",MODE_PRIVATE);
+        Bgm = prefs.getBoolean("BGM",true);//해당 키에 값이 없으면 TRUE 값으로 초기화하며 값을 가져온다.
+        Eff = prefs.getBoolean("EFF",true);//해당 키에 값이 있으면 해당 값을 가져온다.
 
         iv_Intro = (ImageView)findViewById(R.id.iv_Intro);  //이미지뷰 링킹
 

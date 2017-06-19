@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
-
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
-        Nick = prefs.getString("UserName","");
         prefs.edit().putString("Utype","GUEST").apply();
         Utype = prefs.getString("Utype","");
         Character = prefs.getInt("Character",0); //캐릭터 프리퍼런스 값 가져오기. 값이 없다면 0으로 가져옴
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btn_Ranking=(Button)findViewById(R.id.btn_Ranking);
 
         tv_NickName = (TextView)findViewById(R.id.tv_NickName);
-        tv_NickName.setText(Utype+" : "+Nick+"님 환영합니다.   ");
+
 
 
         /*버튼 클릭 이벤트*/
@@ -86,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
+    }
+
+    protected void onStart(){
+        super.onStart();
+        Nick = prefs.getString("UserName","");
+        tv_NickName.setText(Utype+" : "+Nick+"님 환영합니다.   ");
     }
 
     @Override

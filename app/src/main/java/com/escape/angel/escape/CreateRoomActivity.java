@@ -86,8 +86,7 @@ public class CreateRoomActivity extends AppCompatActivity {
                     //UTYPE(프리퍼런스) = "HOST";
                     prefs.edit().putString("Utype","HOST").apply();
                     //데이터베이스에 저장
-                    Toast wToast = Toast.makeText(getApplicationContext(),RNAME+","+RTYPE+","+RHOST+","+HOSTIP,Toast.LENGTH_SHORT);
-                    wToast.show();
+                    Toast.makeText(getApplicationContext(),RNAME+","+RTYPE+","+RHOST+","+HOSTIP,Toast.LENGTH_SHORT).show();
                     insertToDatabase(RNAME,RTYPE,RHOST,HOSTIP);
                     //액티비티 전환
                     Intent mIntent = new Intent(getApplicationContext(),RoomActivity.class);
