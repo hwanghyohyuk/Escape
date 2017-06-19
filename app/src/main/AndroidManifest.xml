@@ -25,9 +25,6 @@
             android:name=".LobbyActivity">
         </activity>
         <activity
-            android:name=".LobbySingleActivity">
-        </activity>
-        <activity
             android:name=".RoomListActivity">
         </activity>
         <activity
@@ -54,6 +51,7 @@
         <activity
             android:name=".RoomActivity">
         </activity>
+        <activity android:name=".SinglePlayActivity"/>
     </application>
 
 </manifest>

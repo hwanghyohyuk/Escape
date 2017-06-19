@@ -37,10 +37,10 @@ public class CharacterSelectActivity extends AppCompatActivity {
         iv_Character2 = (ImageView)findViewById(R.id.iv_Character2);
         iv_Character3 = (ImageView)findViewById(R.id.iv_Character3);
         iv_Character4 = (ImageView)findViewById(R.id.iv_Character4);
-        bitmap1 = BitmapFactory.decodeResource(getResources(),R.drawable.dao);
-        bitmap2 = BitmapFactory.decodeResource(getResources(),R.drawable.dao);
-        bitmap3 = BitmapFactory.decodeResource(getResources(),R.drawable.dao);
-        bitmap4 = BitmapFactory.decodeResource(getResources(),R.drawable.dao);
+        bitmap1 = BitmapFactory.decodeResource(getResources(),R.drawable.mohee);
+        bitmap2 = BitmapFactory.decodeResource(getResources(),R.drawable.mohyuk);
+        bitmap3 = BitmapFactory.decodeResource(getResources(),R.drawable.mori);
+        bitmap4 = BitmapFactory.decodeResource(getResources(),R.drawable.moyeon);
         cb_Character1 = (CheckBox)findViewById(R.id.cb_Character1);
         cb_Character2 = (CheckBox)findViewById(R.id.cb_Character2);
         cb_Character3 = (CheckBox)findViewById(R.id.cb_Character3);

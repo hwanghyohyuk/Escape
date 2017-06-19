@@ -28,7 +28,7 @@ public class LobbyActivity extends AppCompatActivity {
         btn_Single.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //싱글플레이
-                Intent mIntent = new Intent(LobbyActivity.this,LobbySingleActivity.class);
+                Intent mIntent = new Intent(LobbyActivity.this,SinglePlayActivity.class);
                 startActivity(mIntent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
