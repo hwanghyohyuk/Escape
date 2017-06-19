@@ -149,11 +149,12 @@ public class RoomListActivity extends AppCompatActivity {
                     String toastMessage = "HOSTIP : "+HOSTIP+","+"RTYPE : "+RTYPE+","+"RNO : "+RNO+","+
                             "RPNO : "+RPNO+","+"RNAME : "+RNAME+","+"RHOST : "+RHOST;
 
-                    Toast.makeText(
-                            getApplicationContext(),
-                            toastMessage,
-                            Toast.LENGTH_LONG
-                    ).show();
+                    //액티비티 이동 > RTYPE,RNAME,HOSTIP 값넘김
+                    Intent mIntent = new Intent(getApplicationContext(),RoomActivity.class);
+                    mIntent.putExtra("RNAME",RNAME);
+                    mIntent.putExtra("RTYPE",RTYPE);
+                    mIntent.putExtra("HOSTIP",HOSTIP);
+                    startActivity(mIntent);
                 }
             });
 

@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class SinglePlayActivity extends AppCompatActivity{
 
     //
-    private Chronometer timer; // timer 아니에여 음 그래도되고 안그래도되구 ㅋㅋ
+    private Chronometer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +32,10 @@ public class SinglePlayActivity extends AppCompatActivity{
         timer.start();
     }
 
-protected void onDestroy(){
-    super.onDestroy();
-    timer.stop();
-}
+    protected void onDestroy(){
+        super.onDestroy();
+        timer.stop();
+    }
 
         /*
         게임 시작
