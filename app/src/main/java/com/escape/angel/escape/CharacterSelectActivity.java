@@ -61,21 +61,21 @@ public class CharacterSelectActivity extends AppCompatActivity {
         character = prefs.getInt("Character",0);
 
         //캐릭터 프리퍼런스 값을 가져와서 값에 해당하는 이미지 뷰와 체크박스의 선택표시
-        if(character!=0){
+            if(character!=0){
             switch (character){
-                case 1:
+                case 1://모희
                     iv_Character1.setBackgroundResource(R.drawable.image_border);
                     cb_Character1.setChecked(true);
                     break;
-                case 2:
+                case 2://모혁
                     iv_Character2.setBackgroundResource(R.drawable.image_border);
                     cb_Character2.setChecked(true);
                     break;
-                case 3:
+                case 3://모리
                     iv_Character3.setBackgroundResource(R.drawable.image_border);
                     cb_Character3.setChecked(true);
                     break;
-                case 4:
+                case 4://모연
                     iv_Character4.setBackgroundResource(R.drawable.image_border);
                     cb_Character4.setChecked(true);
                     break;
