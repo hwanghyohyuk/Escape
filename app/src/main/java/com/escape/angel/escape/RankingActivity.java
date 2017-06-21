@@ -43,7 +43,6 @@ public class RankingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ranking);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
-
         list = (ListView) findViewById(R.id.listView);
         rankingList = new ArrayList<HashMap<String,String>>();
         Server server = new Server();

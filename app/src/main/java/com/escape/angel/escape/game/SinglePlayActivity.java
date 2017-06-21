@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.escape.angel.escape.NicknameActivity;
 import com.escape.angel.escape.R;
+import com.escape.angel.escape.RankingActivity;
 import com.escape.angel.escape.Server;
 
 import java.io.BufferedReader;
@@ -35,20 +36,18 @@ import java.net.URLEncoder;
 
 public class SinglePlayActivity extends AppCompatActivity{
 
-    private Server server = new Server();
-    private String serverIP = server.getSERVERIP();
     private SharedPreferences prefs;
     private int character,per;
     private String Nick;
 
-    private char check;
+    private long backKeyPressedTime = 0;
+    private Toast toast;
 
     private Chronometer timer;
     private ImageView iv_User1,iv_User2,iv_User3,iv_Teacher;
-            ;
+
     private TextView tv_Ready,tv_touch;
 
-    private final int FAEND=10;
 
     private int sec = 5;
     private int touch = 0;
@@ -77,7 +76,7 @@ public class SinglePlayActivity extends AppCompatActivity{
         @Override
         public void run() {
             timer.setBase(SystemClock.elapsedRealtime());
-            Toast.makeText(getApplicationContext(),"게임시작. 목표 : 터치 90번",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"게임시작. 목표 : 점수 100점이상",Toast.LENGTH_SHORT).show();
             timer.start();
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
@@ -141,12 +140,12 @@ public class SinglePlayActivity extends AppCompatActivity{
             public void onChronometerTick(Chronometer chronometer) {
                 ++records;
                 per=(int)(Math.random() * 10);
-                if(per>6 && teacher==false)
+                if(per>6 && teacher==false){
                     teacher=true;
-                    iv_Teacher.setImageResource(R.drawable.t_back);
-                if(per<6 && teacher ==true)
+                    iv_Teacher.setImageResource(R.drawable.t_back);}
+                if(per<6 && teacher ==true){
                     teacher=false;
-                    iv_Teacher.setImageResource(R.drawable.t_front);
+                    iv_Teacher.setImageResource(R.drawable.t_front);}
             }
         });
         }
@@ -157,26 +156,35 @@ public class SinglePlayActivity extends AppCompatActivity{
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         switch(action) {
-            case MotionEvent.ACTION_UP :    //화면을 터치했다 땠을때
+            case MotionEvent.ACTION_UP:    //화면을 터치했다 땠을때
                 break;
-            case MotionEvent.ACTION_DOWN :    //화면을 터치했을때
-                if(teacher!=true)
-                touch++;
-                else
-                    touch -=10;
+            case MotionEvent.ACTION_DOWN:    //화면을 터치했을때
+                if (teacher != true) {
+                    touch+=2;
+                    tv_touch.setText("점수 : " + touch + "점 +2");
+                } else {
+                    touch -= 5;
+                    tv_touch.setText("점수 : " + touch + "점 -5");
+                }
 
-                tv_touch.setText("횟수 : "+touch+"번");
-                if(touch<30) {
+                if(touch<0){
+                    timer.stop();
+                    Toast.makeText(getApplicationContext(),"미션 실패!", Toast.LENGTH_SHORT).show();
+                    TIME.removeCallbacksAndMessages(0);
+                    finish();
+                 }else if(touch>=0&&touch<30) {
+                    iv_User1.setVisibility(View.VISIBLE);
+                    iv_User2.setVisibility(View.GONE);
                 }else if(touch>=30&&touch<60) {
                     iv_User1.setVisibility(View.GONE);
                     iv_User2.setVisibility(View.VISIBLE);
-                }else if(touch>=60&&touch<90) {
+                    iv_User3.setVisibility(View.GONE);
+                }else if(touch>=60&&touch<100) {
                     iv_User2.setVisibility(View.GONE);
                     iv_User3.setVisibility(View.VISIBLE);
                 }else {
                     timer.stop();
-                    Toast.makeText(getApplicationContext(),"성공! 기록:"+records+"초", Toast.LENGTH_SHORT).show();
-                    insertToDatabase(Nick,records);
+                    Toast.makeText(getApplicationContext(),"미션 성공! 기록:"+records+"초", Toast.LENGTH_SHORT).show();
                     TIME.removeCallbacksAndMessages(0);
                     finish();
                 }
@@ -194,79 +202,29 @@ public class SinglePlayActivity extends AppCompatActivity{
         TIME.postDelayed(gamestart, 6000);
         TIME.postDelayed(ready,1000);
     }
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
+        }
+    }
 
+    public void showGuide() {
+        toast = Toast.makeText(getApplicationContext(),
+                "\'뒤로\' 버튼을 한번 더 누르시면 게임을 종료합니다.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
     protected void onDestroy(){
         super.onDestroy();
+        TIME.removeCallbacksAndMessages(0);
         timer.stop();
     }
-    private void insertToDatabase(String name,int time){
 
-        class InsertData extends AsyncTask<String, Void, String> {
-            ProgressDialog loading;
-
-
-            @Override
-            protected void onPreExecute() {
-                loading = ProgressDialog.show(getApplicationContext(),
-                        "Please Wait", null, true, true);
-                super.onPreExecute();
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                loading.dismiss();
-                super.onPostExecute(s);
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-
-                try{
-                    String name = (String)params[0];
-                    String time = (String)params[1];
-
-                    String link= serverIP+"insertRanking.php";
-
-                    String data  = URLEncoder.encode("NAME", "UTF-8") + "="
-                            + URLEncoder.encode(name, "UTF-8");
-                    data  += "&"+URLEncoder.encode("TIME", "UTF-8") + "="
-                            + URLEncoder.encode(time, "UTF-8");
-
-
-                    URL url = new URL(link);
-                    URLConnection conn = url.openConnection();
-
-                    conn.setDoOutput(true);
-                    OutputStreamWriter wr =
-                            new OutputStreamWriter(conn.getOutputStream());
-
-                    wr.write( data );
-                    wr.flush();
-
-                    BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(conn.getInputStream()));
-
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-
-                    // Read Server Response
-                    while((line = reader.readLine()) != null) {
-                        sb.append(line);
-                        break;
-                    }
-                    String v = sb.toString();
-                    check = v.charAt(1);
-                    return null;
-                }
-                catch(Exception e){
-                    return new String("Exception: " + e.getMessage());
-                }
-
-            }
-        }
-
-        InsertData task = new InsertData();
-        task.execute(name);
-    }
     }
 

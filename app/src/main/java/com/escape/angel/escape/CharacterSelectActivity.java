@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class CharacterSelectActivity extends AppCompatActivity {
 //작성자 한귤 작업 두번째
@@ -58,7 +59,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
         iv_Main.setImageResource(R.drawable.background);
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
-        character = prefs.getInt("Character",0);
+        character = prefs.getInt("Character",1);
 
         //캐릭터 프리퍼런스 값을 가져와서 값에 해당하는 이미지 뷰와 체크박스의 선택표시
             if(character!=0){
@@ -199,6 +200,15 @@ public class CharacterSelectActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        if(selectedCharacter==0){
+            Toast.makeText(getApplicationContext(),"캐릭터를 선택해 주세요.",Toast.LENGTH_SHORT).show();
+        }else {
+        finish();
+        }
+    }
+
     protected void onDestroy(){
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         prefs.edit().putInt("Character",selectedCharacter).apply();
