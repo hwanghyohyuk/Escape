@@ -1,13 +1,17 @@
 package com.escape.angel.escape.game;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.escape.angel.escape.NicknameActivity;
 import com.escape.angel.escape.R;
 
 /**
@@ -18,6 +22,38 @@ public class SinglePlayActivity extends AppCompatActivity{
 
     //
     private Chronometer timer;
+    private TextView tv_Ready;
+
+    private int sec = 5;
+
+    private Handler handler = new Handler();
+
+    private Runnable ready = new Runnable() {
+        @Override
+        public void run() {
+            String s = Integer.toString(sec);
+            if (sec>0 && sec<6) {
+                tv_Ready.setText(s);
+                sec -= 1;
+                handler.removeCallbacksAndMessages(0);
+                handler.postDelayed(ready, 1000);
+            }else {
+                tv_Ready.setText("");
+                handler.removeCallbacksAndMessages(0);
+            }
+        }
+    };
+    private Runnable gamestart = new Runnable() {
+
+        @Override
+        public void run() {
+            timer.setBase(SystemClock.elapsedRealtime());
+            Toast.makeText(getApplicationContext(),"게임시작",Toast.LENGTH_SHORT).show();
+            timer.start();
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +61,17 @@ public class SinglePlayActivity extends AppCompatActivity{
         setContentView(R.layout.activity_singleplay);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         // 바로 게임 시작
+
+
         timer = (Chronometer)findViewById(R.id.timer);
+        tv_Ready = (TextView)findViewById(R.id.tv_Ready);
 
         }
     //타이머 핸들러
     protected  void onStart(){
         super.onStart();
-        timer.start();
+        handler.postDelayed(gamestart, 5000);
+        handler.postDelayed(ready,1000);
     }
 
     protected void onDestroy(){
@@ -39,6 +79,30 @@ public class SinglePlayActivity extends AppCompatActivity{
         timer.stop();
     }
 
+    private void onMission(int m){
+        switch (m){
+            case 1:
+                //초성퀴즈
+
+                break;
+            case 2:
+                //빗질
+
+                break;
+            case 3:
+                //화장
+
+                break;
+            case 4:
+                //도시락
+
+                break;
+            case 5:
+                //춤추기
+
+                break;
+        }
+    }
         /*
         게임 시작
 

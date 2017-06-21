@@ -122,7 +122,7 @@ public class RoomActivity extends AppCompatActivity{
         btn_transH = (Button)findViewById(R.id.btn_transH);
         btn_transG = (Button)findViewById(R.id.btn_transG);
 
-        bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.slot);
+        //bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.slot);
         bitmap1 = BitmapFactory.decodeResource(getResources(),R.drawable.mohee);
         bitmap2 = BitmapFactory.decodeResource(getResources(),R.drawable.mohyuk);
         bitmap3 = BitmapFactory.decodeResource(getResources(),R.drawable.mori);
