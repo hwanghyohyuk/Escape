@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.escape.angel.escape.game.SinglePlayActivity;
+
 public class LobbyActivity extends AppCompatActivity {
     /*버튼 선언*/
     private Button btn_Single,btn_Multi;

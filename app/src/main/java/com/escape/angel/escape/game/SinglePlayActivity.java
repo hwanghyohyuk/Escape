@@ -1,4 +1,4 @@
-package com.escape.angel.escape;
+package com.escape.angel.escape.game;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.escape.angel.escape.R;
 
 /**
  * Created by my on 2017-06-19.
