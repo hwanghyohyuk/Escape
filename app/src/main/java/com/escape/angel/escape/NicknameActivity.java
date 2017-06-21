@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class NicknameActivity extends AppCompatActivity {
     private String setName;
     private long backKeyPressedTime = 0;
     private Toast toast;
+    private ImageView iv_Main;
 
     public void checkNickRun() {
         prefs = getSharedPreferences("Pref", MODE_PRIVATE);
@@ -65,6 +67,10 @@ public class NicknameActivity extends AppCompatActivity {
 
         button1 = (Button) findViewById(R.id.button1);
         et_Nickname = (EditText) findViewById(R.id.et_Nickname);
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

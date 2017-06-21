@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class EditBoxDialog extends Dialog {
     public EditBoxDialog(Context context){
         super(context);
     }
+
+    private ImageView iv_Main;
 
     private TextView tv_dialog_title;
     private EditText et_modify_edit;
@@ -54,6 +57,10 @@ public class EditBoxDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_edit_box);
 
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
         tv_dialog_title = (TextView)findViewById(R.id.tv_dialog_title);
         et_modify_edit = (EditText)findViewById(R.id.et_modify_edit);
         btn_modify_done = (Button)findViewById(R.id.btn_modify_done);

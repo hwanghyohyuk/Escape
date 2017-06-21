@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.escape.angel.escape.game.SinglePlayActivity;
+
+import static com.escape.angel.escape.R.id.iv_Main;
 
 public class LobbyActivity extends AppCompatActivity {
     /*버튼 선언*/
     private Button btn_Single,btn_Multi;
+    private ImageView iv_Main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,12 @@ public class LobbyActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_lobby);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+
+
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
 
 
         /*버튼 링킹*/

@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    private ImageView iv_Main;
     private TextView tv_NickName;
     private Button btn_GameStart,btn_MyPage,btn_Setting,btn_Ranking;
 
@@ -46,12 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
         tv_NickName = (TextView)findViewById(R.id.tv_NickName);
 
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.MainBackground);
 
 
         /*버튼 클릭 이벤트*/
         btn_GameStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent mIntent = new Intent(MainActivity.this,LobbyActivity.class);
                 startActivity(mIntent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);

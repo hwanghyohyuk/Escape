@@ -21,22 +21,22 @@
 
     <Button
         android:id="@+id/btn_GameStart"
-        android:layout_width="88dp"
-        android:layout_height="110dp"
-        android:background="@drawable/play3"
-        android:text="게임시작"
+        android:layout_width="89dp"
+        android:layout_height="105dp"
+        android:background="@drawable/start"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteY="254dp" />
 
     <Button
         android:id="@+id/btn_MyPage"
         android:layout_width="88dp"
         android:layout_height="110dp"
-        android:text="사물함"
+        android:background="@drawable/MyCabin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.368"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -48,7 +48,7 @@
         android:id="@+id/btn_Setting"
         android:layout_width="88dp"
         android:layout_height="110dp"
-        android:text="설정"
+        android:background="@drawable/Setting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,15 +58,17 @@
 
     <Button
         android:id="@+id/btn_Ranking"
-        android:layout_width="88dp"
-        android:layout_height="80dp"
+        android:layout_width="87dp"
+        android:layout_height="101dp"
+        android:background="@drawable/Ranking"
         android:text="랭킹"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.935"
+        tools:layout_editor_absoluteY="242dp" />
 
     <ImageView
         android:id="@+id/ivLogo"

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class CreateRoomActivity extends AppCompatActivity {
     private EditText et_RoomTitle;
     private RadioGroup rbg_Mode;
     private Button btn_Cancel,btn_Create;
+    private ImageView iv_Main;
 
     private SharedPreferences prefs;
     private String Nick;
@@ -53,6 +55,10 @@ public class CreateRoomActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         Nick = prefs.getString("UserName","");
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
 
         //취소버튼 이벤트
         btn_Cancel.setOnClickListener(new View.OnClickListener() {

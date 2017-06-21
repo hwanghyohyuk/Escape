@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -28,6 +29,7 @@ public class RankingActivity extends AppCompatActivity {
     private static final String TAG_RANKNUM="RANKNUM";
     private static final String TAG_NAME = "NAME";
     private static final String TAG_TIME = "TIME";
+    private ImageView iv_Main;
 
     private JSONArray rank = null;
 
@@ -43,6 +45,10 @@ public class RankingActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
 
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
         list = (ListView) findViewById(R.id.listView);
         rankingList = new ArrayList<HashMap<String,String>>();
         Server server = new Server();

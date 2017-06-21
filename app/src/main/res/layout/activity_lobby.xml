@@ -19,28 +19,28 @@
 
     <Button
         android:id="@+id/btn_Single"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="싱글플레이"
+        android:layout_width="220dp"
+        android:layout_height="230dp"
+        android:background="@drawable/SinglePlay"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.300"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.496" />
 
     <Button
         android:id="@+id/btn_Multi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="멀티플레이"
+        android:layout_width="259dp"
+        android:layout_height="266dp"
+        android:background="@drawable/MultiPlay"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.700"
+        app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.400" />
 
 </android.support.constraint.ConstraintLayout>

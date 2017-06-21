@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
 
+    private ImageView iv_Main;
     private Switch swc_Bgm,swc_Eff;
     private TextView tv_NickName;
     private Button btn_Modify, btn_Maker;
@@ -32,6 +34,11 @@ public class SettingActivity extends AppCompatActivity {
 
         swc_Bgm = (Switch)findViewById(R.id.swc_Bgm);
         swc_Eff = (Switch)findViewById(R.id.swc_Eff);
+
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
 
         tv_NickName = (TextView)findViewById(R.id.tv_NickName);
 

@@ -18,6 +18,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
     private ImageView iv_Character1,iv_Character2,iv_Character3,iv_Character4;
     private CheckBox cb_Character1,cb_Character2,cb_Character3,cb_Character4;
     private Button btn_confirm;
+    private ImageView iv_Main;
 
     private Bitmap bitmap1,bitmap2,bitmap3,bitmap4;
 
@@ -51,6 +52,11 @@ public class CharacterSelectActivity extends AppCompatActivity {
         iv_Character2.setImageBitmap(bitmap2);
         iv_Character3.setImageBitmap(bitmap3);
         iv_Character4.setImageBitmap(bitmap4);
+
+
+        iv_Main = (ImageView)findViewById(R.id.iv_Main);
+
+        iv_Main.setImageResource(R.drawable.Background);
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         character = prefs.getInt("Character",0);
