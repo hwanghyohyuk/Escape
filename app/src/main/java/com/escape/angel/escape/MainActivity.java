@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         iv_Main = (ImageView)findViewById(R.id.iv_Main);
 
-        iv_Main.setImageResource(R.drawable.MainBackground);
+        iv_Main.setImageResource(R.drawable.main_background);
 
 
         /*버튼 클릭 이벤트*/

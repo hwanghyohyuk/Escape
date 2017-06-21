@@ -38,7 +38,7 @@ public class SettingActivity extends AppCompatActivity {
 
         iv_Main = (ImageView)findViewById(R.id.iv_Main);
 
-        iv_Main.setImageResource(R.drawable.Background);
+        iv_Main.setImageResource(R.drawable.background);
 
         tv_NickName = (TextView)findViewById(R.id.tv_NickName);
 

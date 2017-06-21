@@ -7,19 +7,19 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="150dp"
+        android:background="#9292ff"
         android:layout_centerInParent="true">
 
         <TextView
             android:id="@+id/tv_dialog_title"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="닉네임"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="24sp" />
 
 
         <EditText
@@ -35,9 +35,11 @@
             android:id="@+id/btn_modify_done"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:layout_alignEnd="@+id/et_modify_edit"
+            android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/et_modify_edit"
             android:layout_below="@+id/et_modify_edit"
-            android:text="변경"
+            android:background="@drawable/nickchange"
             android:textSize="18sp" />
 
     </RelativeLayout>

@@ -58,7 +58,7 @@ public class CreateRoomActivity extends AppCompatActivity {
 
         iv_Main = (ImageView)findViewById(R.id.iv_Main);
 
-        iv_Main.setImageResource(R.drawable.Background);
+        iv_Main.setImageResource(R.drawable.background);
 
         //취소버튼 이벤트
         btn_Cancel.setOnClickListener(new View.OnClickListener() {

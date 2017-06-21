@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/iv_Main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,7 +22,7 @@
         android:id="@+id/btn_Single"
         android:layout_width="220dp"
         android:layout_height="230dp"
-        android:background="@drawable/SinglePlay"
+        android:background="@drawable/singleplay"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.161"
@@ -34,13 +35,13 @@
         android:id="@+id/btn_Multi"
         android:layout_width="259dp"
         android:layout_height="266dp"
-        android:background="@drawable/MultiPlay"
+        android:background="@drawable/multiplay"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.400" />
+        app:layout_constraintVertical_bias="0.4" />
 
 </android.support.constraint.ConstraintLayout>

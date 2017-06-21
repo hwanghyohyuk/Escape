@@ -33,6 +33,7 @@ public class RoomListActivity extends AppCompatActivity {
     private String myJSON; //json객체를 저장할 변수
 
     private ImageView iv_Main;
+
     private static final String TAG_RESULTS="RESULT";
     private static final String TAG_RNO = "RNO";
     private static final String TAG_RNAME = "RNAME";
@@ -62,11 +63,9 @@ public class RoomListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_room_list);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
-
-
         iv_Main = (ImageView)findViewById(R.id.iv_Main);
 
-        iv_Main.setImageResource(R.drawable.Background);
+        iv_Main.setImageResource(R.drawable.background);
         list = (ListView) findViewById(R.id.listView);
         btn_CreateRoom = (Button)findViewById(R.id.btn_CreateRoom);
         btn_Refresh = (Button)findViewById(R.id.btn_Refresh);

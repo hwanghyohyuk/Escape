@@ -56,7 +56,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
 
         iv_Main = (ImageView)findViewById(R.id.iv_Main);
 
-        iv_Main.setImageResource(R.drawable.Background);
+        iv_Main.setImageResource(R.drawable.background);
 
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         character = prefs.getInt("Character",0);
