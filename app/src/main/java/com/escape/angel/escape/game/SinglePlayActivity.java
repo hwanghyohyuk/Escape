@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.escape.angel.escape.NicknameActivity;
 import com.escape.angel.escape.R;
 
 /**
@@ -22,9 +23,13 @@ public class SinglePlayActivity extends AppCompatActivity{
 
     //
     private Chronometer timer;
-    private TextView tv_Ready;
+    private TextView tv_Ready,tv_FA;
+    private Button btn_FA;
+
+    private final int FAEND=10;
 
     private int sec = 5;
+    private int fa = 0;
 
     private Handler handler = new Handler();
 
@@ -65,12 +70,23 @@ public class SinglePlayActivity extends AppCompatActivity{
 
         timer = (Chronometer)findViewById(R.id.timer);
         tv_Ready = (TextView)findViewById(R.id.tv_Ready);
+        tv_FA = (TextView)findViewById(R.id.tv_FA);
+        btn_FA = (Button)findViewById(R.id.btn_FA);
 
+        tv_FA.setVisibility(View.GONE);
+        btn_FA.setVisibility(View.GONE);
+
+        btn_FA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fa++;
+            }
+        });
         }
     //타이머 핸들러
     protected  void onStart(){
         super.onStart();
-        handler.postDelayed(gamestart, 5000);
+        handler.postDelayed(gamestart, 6000);
         handler.postDelayed(ready,1000);
     }
 
@@ -83,7 +99,7 @@ public class SinglePlayActivity extends AppCompatActivity{
         switch (m){
             case 1:
                 //초성퀴즈
-
+                FirstAlpha();
                 break;
             case 2:
                 //빗질
@@ -102,6 +118,15 @@ public class SinglePlayActivity extends AppCompatActivity{
 
                 break;
         }
+    }
+
+    private Boolean FirstAlpha(){
+        tv_FA.setText(fa);
+        tv_FA.setVisibility(View.VISIBLE);
+        btn_FA.setVisibility(View.VISIBLE);
+
+
+        return true;
     }
         /*
         게임 시작
