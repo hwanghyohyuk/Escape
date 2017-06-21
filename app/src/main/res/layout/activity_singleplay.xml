@@ -167,8 +167,12 @@
         android:layout_width="142dp"
         android:layout_height="114dp"
         app:srcCompat="@drawable/t_front"
-        tools:layout_editor_absoluteY="202dp"
-        tools:layout_editor_absoluteX="366dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintVertical_bias="0.824" />
 
     <Chronometer
         android:id="@+id/timer"
