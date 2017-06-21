@@ -31,13 +31,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/mohyuk" />
+        />
 
     <ImageView
         android:id="@+id/iv_desk3"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size3"
+        android:background="@drawable/desk_size3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,13 +54,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mohyuk" />
+        />
 
     <ImageView
         android:id="@+id/iv_desk2"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size2"
+        android:background="@drawable/desk_size2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,14 +76,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276"
-        app:srcCompat="@drawable/mohyuk" />
+        app:layout_constraintVertical_bias="0.276" />
 
     <ImageView
         android:id="@+id/iv_desk1"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size1"
+        android:background="@drawable/desk_size1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +93,7 @@
         android:id="@+id/iv_desk6"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size3"
+        android:background="@drawable/desk_size3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +105,7 @@
         android:id="@+id/iv_desk5"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size2"
+        android:background="@drawable/desk_size2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,7 +117,7 @@
         android:id="@+id/iv_desk4"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size1"
+        android:background="@drawable/desk_size1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +129,7 @@
         android:id="@+id/iv_desk9"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size3"
+        android:background="@drawable/desk_size3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -141,7 +140,7 @@
         android:id="@+id/iv_desk8"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size2"
+        android:background="@drawable/desk_size2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -152,7 +151,7 @@
         android:id="@+id/iv_desk7"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/desk_size1"
+        android:background="@drawable/desk_size1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -163,48 +162,53 @@
 
 
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/iv_Teacher"
         android:layout_width="142dp"
         android:layout_height="114dp"
-        app:srcCompat="@drawable/t_front"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/t_front"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.824" />
 
     <Chronometer
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
-    android:id="@+id/tv_Ready"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text=""
-    android:textSize="30sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_FA"
+        android:id="@+id/tv_Ready"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_touch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="횟수 : 0번"
+        android:textColor="@color/material_blue_grey_800"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,8 +1,10 @@
 package com.escape.angel.escape.game;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -16,7 +18,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.escape.angel.escape.NicknameActivity;
 import com.escape.angel.escape.R;
+import com.escape.angel.escape.Server;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 
 /**
  * Created by my on 2017-06-19.
@@ -24,18 +35,26 @@ import com.escape.angel.escape.R;
 
 public class SinglePlayActivity extends AppCompatActivity{
 
+    private Server server = new Server();
+    private String serverIP = server.getSERVERIP();
     private SharedPreferences prefs;
-    private int character;
+    private int character,per;
+    private String Nick;
+
+    private char check;
 
     private Chronometer timer;
-    private ImageView iv_User1,iv_User2,iv_User3;
-    private TextView tv_Ready,tv_FA;
-    private Button btn_FA;
+    private ImageView iv_User1,iv_User2,iv_User3,iv_Teacher;
+            ;
+    private TextView tv_Ready,tv_touch;
 
     private final int FAEND=10;
 
     private int sec = 5;
     private int touch = 0;
+    private int records = 0;
+
+    private boolean teacher = false;
 
     private Handler TIME = new Handler();
 
@@ -58,7 +77,7 @@ public class SinglePlayActivity extends AppCompatActivity{
         @Override
         public void run() {
             timer.setBase(SystemClock.elapsedRealtime());
-            Toast.makeText(getApplicationContext(),"게임시작. 목표 : 터치 30번",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"게임시작. 목표 : 터치 90번",Toast.LENGTH_SHORT).show();
             timer.start();
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
@@ -75,15 +94,21 @@ public class SinglePlayActivity extends AppCompatActivity{
         //사용자가 설정한 캐릭터 가져오기
         prefs = getSharedPreferences("Pref",MODE_PRIVATE);
         character = prefs.getInt("Character",0);
+        Nick = prefs.getString("UserName","");
 
         iv_User1 = (ImageView)findViewById(R.id.iv_User1);
         iv_User2 = (ImageView)findViewById(R.id.iv_User2);
         iv_User3 = (ImageView)findViewById(R.id.iv_User3);
+        iv_Teacher = (ImageView)findViewById(R.id.iv_Teacher);
 
         timer = (Chronometer)findViewById(R.id.timer);
         tv_Ready = (TextView)findViewById(R.id.tv_Ready);
+        tv_touch = (TextView)findViewById(R.id.tv_touch);
+
+        iv_Teacher.setImageResource(R.drawable.t_front);
 
         switch (character){
+
             case 1:
                 iv_User1.setImageResource(R.drawable.mohee);
                 iv_User2.setImageResource(R.drawable.mohee);
@@ -108,7 +133,22 @@ public class SinglePlayActivity extends AppCompatActivity{
                 iv_User3.setImageResource(R.drawable.moyeon);
                 iv_User1.setVisibility(View.VISIBLE);
                 break;
+
         }
+
+        timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                ++records;
+                per=(int)(Math.random() * 10);
+                if(per>6 && teacher==false)
+                    teacher=true;
+                    iv_Teacher.setImageResource(R.drawable.t_back);
+                if(per<6 && teacher ==true)
+                    teacher=false;
+                    iv_Teacher.setImageResource(R.drawable.t_front);
+            }
+        });
         }
 
     //화면 터치 이벤트
@@ -117,22 +157,28 @@ public class SinglePlayActivity extends AppCompatActivity{
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         switch(action) {
-            case MotionEvent.ACTION_DOWN :    //화면을 터치했을때
-                break;
             case MotionEvent.ACTION_UP :    //화면을 터치했다 땠을때
+                break;
+            case MotionEvent.ACTION_DOWN :    //화면을 터치했을때
+                if(teacher!=true)
                 touch++;
-                Toast.makeText(getApplicationContext(), "터치 "+touch+"번", Toast.LENGTH_SHORT).show();
-                if(touch<10) {
-                }else if(touch>=10&&touch<20) {
+                else
+                    touch -=10;
+
+                tv_touch.setText("횟수 : "+touch+"번");
+                if(touch<30) {
+                }else if(touch>=30&&touch<60) {
                     iv_User1.setVisibility(View.GONE);
                     iv_User2.setVisibility(View.VISIBLE);
-                }else if(touch>=20&&touch<30) {
+                }else if(touch>=60&&touch<90) {
                     iv_User2.setVisibility(View.GONE);
                     iv_User3.setVisibility(View.VISIBLE);
                 }else {
                     timer.stop();
-                    Toast.makeText(getApplicationContext(),"성공! 기록:"+timer.getBase()+"초", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"성공! 기록:"+records+"초", Toast.LENGTH_SHORT).show();
+                    insertToDatabase(Nick,records);
                     TIME.removeCallbacksAndMessages(0);
+                    finish();
                 }
 
                 break;
@@ -153,24 +199,74 @@ public class SinglePlayActivity extends AppCompatActivity{
         super.onDestroy();
         timer.stop();
     }
+    private void insertToDatabase(String name,int time){
 
-        /*
-        게임 시작
+        class InsertData extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
 
-타이머시작
-선생님 수시로 돌아봄 ( if 돌아볼때 걸리면 목숨(총3개) 줄어듬
-			(if 목숨 0개 되면 탈락. 게임종료))
-	{
-	첫번째 미션 수행 (랜덤)
-	 - 선생님한테 안걸리게 ^^
-	게이지 다채우면 자리이동
 
-	두번쨰 미션 수행 (랜덤)
-		-5번째까지 똑같-
-	}
-타이머 종료
-아이템 획득
-선생님한테 안걸리고 탈출 성~공
-         */
+            @Override
+            protected void onPreExecute() {
+                loading = ProgressDialog.show(getApplicationContext(),
+                        "Please Wait", null, true, true);
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                loading.dismiss();
+                super.onPostExecute(s);
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                try{
+                    String name = (String)params[0];
+                    String time = (String)params[1];
+
+                    String link= serverIP+"insertRanking.php";
+
+                    String data  = URLEncoder.encode("NAME", "UTF-8") + "="
+                            + URLEncoder.encode(name, "UTF-8");
+                    data  += "&"+URLEncoder.encode("TIME", "UTF-8") + "="
+                            + URLEncoder.encode(time, "UTF-8");
+
+
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr =
+                            new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write( data );
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+                    String v = sb.toString();
+                    check = v.charAt(1);
+                    return null;
+                }
+                catch(Exception e){
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+
+        InsertData task = new InsertData();
+        task.execute(name);
+    }
     }
 
