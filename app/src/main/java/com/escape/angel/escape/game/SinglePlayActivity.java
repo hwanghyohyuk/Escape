@@ -44,7 +44,7 @@ public class SinglePlayActivity extends AppCompatActivity{
                 handler.postDelayed(ready, 1000);
             }else {
                 tv_Ready.setText("");
-                handler.removeCallbacksAndMessages(0);
+
             }
         }
     };
@@ -55,6 +55,7 @@ public class SinglePlayActivity extends AppCompatActivity{
             timer.setBase(SystemClock.elapsedRealtime());
             Toast.makeText(getApplicationContext(),"게임시작",Toast.LENGTH_SHORT).show();
             timer.start();
+            onMission(1);
         }
     };
 
@@ -124,9 +125,12 @@ public class SinglePlayActivity extends AppCompatActivity{
         tv_FA.setText(fa);
         tv_FA.setVisibility(View.VISIBLE);
         btn_FA.setVisibility(View.VISIBLE);
-
-
-        return true;
+        if(fa<10){
+            this.FirstAlpha();
+        } else{
+            return true;
+        }
+        return this.FirstAlpha();
     }
         /*
         게임 시작

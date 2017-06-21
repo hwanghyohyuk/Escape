@@ -17,7 +17,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
 //작성자 한귤 작업 두번째
     private ImageView iv_Character1,iv_Character2,iv_Character3,iv_Character4;
     private CheckBox cb_Character1,cb_Character2,cb_Character3,cb_Character4;
-    private Button btn_confirm;
+
     private ImageView iv_Main;
 
     private Bitmap bitmap1,bitmap2,bitmap3,bitmap4;
@@ -46,7 +46,6 @@ public class CharacterSelectActivity extends AppCompatActivity {
         cb_Character2 = (CheckBox)findViewById(R.id.cb_Character2);
         cb_Character3 = (CheckBox)findViewById(R.id.cb_Character3);
         cb_Character4 = (CheckBox)findViewById(R.id.cb_Character4);
-        btn_confirm = (Button)findViewById(R.id.btn_confirm);
 
         iv_Character1.setImageBitmap(bitmap1);
         iv_Character2.setImageBitmap(bitmap2);
@@ -199,16 +198,10 @@ public class CharacterSelectActivity extends AppCompatActivity {
                 selectedCharacter=4;
             }
         });
-
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                prefs = getSharedPreferences("Pref",MODE_PRIVATE);
-                prefs.edit().putInt("Character",selectedCharacter).apply();
-                Intent mIntent = new Intent(getApplicationContext(),MyPageActivity.class);
-                startActivity(mIntent);
-                finish();
-            }
-        });
+    }
+    protected void onDestroy(){
+        prefs = getSharedPreferences("Pref",MODE_PRIVATE);
+        prefs.edit().putInt("Character",selectedCharacter).apply();
+        super.onDestroy();
     }
 }
